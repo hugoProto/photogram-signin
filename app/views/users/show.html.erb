@@ -1,67 +1,72 @@
-<h1><%= @user.username %></h1>
+<div>
+  <%= notice %>
+</div>
 
-<dl>
-  <dt>ID</dt>
-  <dd><%= @user.id %></dd>
+  <h1><%= @user.username %></h1>
 
-  <dt>Edit user</dt>
-  <dd>
-    <form action="/update_user/<%= @user.id %>" >
-      <label for="browser_username">Username</label>
-      <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="<%= @user.username %>">
+  <dl>
+    <dt>ID</dt>
+    <dd><%= @user.id %></dd>
 
-      <button>Update user</button>
-    </form>
-  </dd>
-</dl>
+    <dt>Edit user</dt>
+    <dd>
+      <form action="/update_user/<%= @user.id %>" >
+        <label for="browser_username">Username</label>
+        <input id="browser_username" type="text" name="input_username" placeholder="Enter a username..." value="<%= @user.username %>">
 
-<h2>Own photos (<%= @user.own_photos.count %>)</h2>
+        <button>Update user</button>
+      </form>
+    </dd>
+  </dl>
 
-<table border="1">
-  <tr>
-    <th>
-      Image
-    </th>
+  <h2>Own photos (<%= @user.own_photos.count %>)</h2>
 
-    <th>
-      Owner
-    </th>
+  <table border="1">
+    <tr>
+      <th>
+        Image
+      </th>
 
-    <th>
-      Caption
-    </th>
+      <th>
+        Owner
+      </th>
 
-    <th>
-      Posted
-    </th>
+      <th>
+        Caption
+      </th>
 
-    <th></th>
-  </tr>
+      <th>
+        Posted
+      </th>
 
-  <% @user.own_photos.each do |photo| %>
-  <tr>
-    <td>
-      <img src="<%= photo.image %>">
-    </td>
+      <th></th>
+    </tr>
 
-    <td>
-      <%= photo.poster.username %>
-    </td>
+    <% @user.own_photos.each do |photo| %>
+    <tr>
+      <td>
+        <img src="<%= photo.image %>">
+      </td>
 
-    <td>
-      <%= photo.caption %>
-    </td>
+      <td>
+        <%= photo.poster.username %>
+      </td>
 
-    <td>
-      <%= photo.created_at %>
-    </td>
-    
-    <td>
-      <a href="/photos/<%= photo.id %>">
-        Show details
-      </a>
-    </td>
-  </tr>
+      <td>
+        <%= photo.caption %>
+      </td>
 
-  <% end %>
-</table>
+      <td>
+        <%= photo.created_at %>
+      </td>
+      
+      <td>
+        <a href="/photos/<%= photo.id %>">
+          Show details
+        </a>
+      </td>
+    </tr>
+
+    <% end %>
+  </table>
+
